@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
 import '../Styles/Home.css';
+import { ThemeCounterContext } from '../ThemeCounterContext';
 
 const Home = () => {
   const [stats, setStats] = useState({ clients: 0, projects: 0, awards: 0 });
+  const { counter } = useContext(ThemeCounterContext); // Access the counter value from context
 
   // Simulating a data fetch with useEffect
   useEffect(() => {
@@ -45,6 +47,11 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <div className="home-counter">
+      <h1>Welcome to the Home Page!</h1>
+      <p>Current Counter Value: <span className="counter-value">{counter}</span></p>
+    </div>
 
       {/* Stats Section */}
       <section className="stats-section">

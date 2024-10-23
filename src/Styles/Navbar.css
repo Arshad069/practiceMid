@@ -1,69 +1,90 @@
-/* General navbar styling */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333;
-    padding: 1rem;
-    position: relative;
+    padding: 1rem 2rem;
+    background-color: var(--navbar-bg);
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar.light {
+    --navbar-bg: #ffffff; /* Light theme background */
+    color: #000000; /* Light theme text color */
+  }
+  
+  .navbar.dark {
+    --navbar-bg: #333333; /* Dark theme background */
+    color: #ffffff; /* Dark theme text color */
   }
   
   .logo {
-    color: white;
     font-size: 1.5rem;
     font-weight: bold;
   }
   
   .menu {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
   }
   
-  .menu a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
-    transition: color 0.3s;
+  .menu.open {
+    display: flex; /* Display when open */
   }
   
-  .menu a:hover {
-    color: #f0a500;
-  }
-  
-  /* Hamburger menu */
   .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 0.3rem;
+    display: none; /* Hide hamburger by default */
     cursor: pointer;
   }
   
-  .hamburger .bar {
-    width: 25px;
-    height: 3px;
-    background-color: white;
-    border-radius: 5px;
+  .theme-toggle, .counter {
+    display: flex;
+    align-items: center;
   }
   
-  /* Media query for mobile */
+  /* Responsive Design */
   @media (max-width: 768px) {
     .menu {
+      display: none; /* Hide menu items */
+      flex-direction: column; /* Stack menu items vertically */
       position: absolute;
-      top: 60px;
+      top: 70px; /* Adjust based on navbar height */
+      left: 0;
       right: 0;
-      background-color: #333;
-      flex-direction: column;
-      width: 100%;
-      text-align: center;
-      display: none;
+      background-color: var(--navbar-bg);
+      padding: 1rem 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      z-index: 1;
     }
   
     .menu.open {
-      display: flex;
+      display: flex; /* Show menu items when open */
     }
   
     .hamburger {
-      display: flex;
+      display: flex; /* Show hamburger icon */
+      font-size: 1.5rem; /* Increase the size of the icon */
     }
+  
+    .theme-toggle, .counter {
+      display: none; /* Hide buttons on mobile */
+    }
+  }
+  
+  /* Additional Styling for Active Links */
+  .menu a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  
+  .menu a.active {
+    font-weight: bold;
+    color: var(--active-color, #007bff); /* Change active color */
+  }
+  
+  .menu a:hover {
+    color: var(--hover-color, #0056b3); /* Change hover color */
   }
   
